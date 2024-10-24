@@ -72,6 +72,25 @@ export default class Resources extends EventEmitter
             { name: 'introDevBase', source: './models/intro/dev/base.glb' },
             { name: 'introDevCollision', source: './models/intro/dev/collision.glb' },
 
+            { name: 'introChongQingBase', source: './models/intro/chongqing/base.glb' },
+            { name: 'introChongQingCollision', source: './models/intro/chongqing/collision.glb' },
+
+            { name: 'introHuaBase', source: './models/intro/hua/base.glb' },
+            { name: 'introHuaCollision', source: './models/intro/hua/collision.glb' },
+
+            { name: 'introGongBase', source: './models/intro/gong/base.glb' },
+            { name: 'introGongCollision', source: './models/intro/gong/collision.glb' },
+
+            { name: 'introZhiBase', source: './models/intro/zhi/base.glb' },
+            { name: 'introZhiCollision', source: './models/intro/zhi/collision.glb' },
+
+            { name: 'introYeBase', source: './models/intro/ye/base.glb' },
+            { name: 'introYeCollision', source: './models/intro/ye/collision.glb' },
+
+            { name: 'introXueYuanBase', source: './models/intro/xueyuan/base.glb' },
+            { name: 'introXueYuanCollision', source: './models/intro/xueyuan/collision.glb' },
+
+
             // Intro
             { name: 'crossroadsStaticBase', source: './models/crossroads/static/base.glb' },
             { name: 'crossroadsStaticCollision', source: './models/crossroads/static/collision.glb' },

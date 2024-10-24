@@ -273,6 +273,62 @@ export default class IntroSection
             mass: 1.5,
             soundName: 'brick'
         })
+
+        // 重庆化工职业学院文字
+        this.objects.add({
+            base: this.resources.items.introChongQingBase.scene,
+            collision: this.resources.items.introChongQingCollision.scene,
+            offset: new THREE.Vector3(0, 0, 0),
+            rotation: new THREE.Euler(0, 0, 0),
+            shadow: { sizeX: 2.5, sizeY: 1.5, offsetZ: - 0.6, alpha: 0.3 },
+            mass: 1.5,
+            soundName: 'brick'
+        })
+        this.objects.add({
+            base: this.resources.items.introHuaBase.scene,
+            collision: this.resources.items.introHuaCollision.scene,
+            offset: new THREE.Vector3(0, 0, 0),
+            rotation: new THREE.Euler(0, 0, 0),
+            shadow: { sizeX: 2.5, sizeY: 1.5, offsetZ: - 0.6, alpha: 0.3 },
+            mass: 1.5,
+            soundName: 'brick'
+        })
+        this.objects.add({
+            base: this.resources.items.introGongBase.scene,
+            collision: this.resources.items.introGongCollision.scene,
+            offset: new THREE.Vector3(0, 0, 0),
+            rotation: new THREE.Euler(0, 0, 0),
+            shadow: { sizeX: 2.5, sizeY: 1.5, offsetZ: - 0.6, alpha: 0.3 },
+            mass: 1.5,
+            soundName: 'brick'
+        })
+        this.objects.add({
+            base: this.resources.items.introZhiBase.scene,
+            collision: this.resources.items.introZhiCollision.scene,
+            offset: new THREE.Vector3(0, 0, 0),
+            rotation: new THREE.Euler(0, 0, 0),
+            shadow: { sizeX: 2.5, sizeY: 1.5, offsetZ: - 0.6, alpha: 0.3 },
+            mass: 1.5,
+            soundName: 'brick'
+        })
+        this.objects.add({
+            base: this.resources.items.introYeBase.scene,
+            collision: this.resources.items.introYeCollision.scene,
+            offset: new THREE.Vector3(0, 0, 0),
+            rotation: new THREE.Euler(0, 0, 0),
+            shadow: { sizeX: 2.5, sizeY: 1.5, offsetZ: - 0.6, alpha: 0.3 },
+            mass: 1.5,
+            soundName: 'brick'
+        })
+        this.objects.add({
+            base: this.resources.items.introXueYuanBase.scene,
+            collision: this.resources.items.introXueYuanCollision.scene,
+            offset: new THREE.Vector3(0, 0, 0),
+            rotation: new THREE.Euler(0, 0, 0),
+            shadow: { sizeX: 2.5, sizeY: 1.5, offsetZ: - 0.6, alpha: 0.3 },
+            mass: 1.5,
+            soundName: 'brick'
+        })
     }
 
     setTiles()
