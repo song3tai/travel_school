@@ -9,6 +9,7 @@ import Car from './Car.js'
 import Areas from './Areas.js'
 import Tiles from './Tiles.js'
 import Walls from './Walls.js'
+import PhotoPlane from './PhotoPlane.js'
 import IntroSection from './Sections/IntroSection.js'
 import ProjectsSection from './Sections/ProjectsSection.js'
 import CrossroadsSection from './Sections/CrossroadsSection.js'
@@ -76,6 +77,7 @@ export default class World
         this.setWalls()
         this.setSections()
         this.setEasterEggs()
+        this.setPhotoPlane()
     }
 
     setReveal()
@@ -457,32 +459,32 @@ export default class World
         this.container.add(this.sections.intro.container)
 
         // Crossroads
-        // this.sections.crossroads = new CrossroadsSection({
-        //     ...options,
-        //     x: 0,
-        //     y: - 30
-        // })
-        // this.container.add(this.sections.crossroads.container)
+        this.sections.crossroads = new CrossroadsSection({
+            ...options,
+            x: 0,
+            y: - 30
+        })
+        this.container.add(this.sections.crossroads.container)
 
         // Projects
-        // this.sections.projects = new ProjectsSection({
-        //     ...options,
-        //     x: 30,
-        //     y: - 30
-        //     // x: 0,
-        //     // y: 0
-        // })
-        // this.container.add(this.sections.projects.container)
+        this.sections.projects = new ProjectsSection({
+            ...options,
+            x: 30,
+            y: - 30
+            // x: 0,
+            // y: 0
+        })
+        this.container.add(this.sections.projects.container)
 
         // Information
-        // this.sections.information = new InformationSection({
-        //     ...options,
-        //     x: 1.2,
-        //     y: - 55
-        //     // x: 0,
-        //     // y: - 10
-        // })
-        // this.container.add(this.sections.information.container)
+        this.sections.information = new InformationSection({
+            ...options,
+            x: 1.2,
+            y: - 55
+            // x: 0,
+            // y: - 10
+        })
+        this.container.add(this.sections.information.container)
 
         // Playground
         this.sections.playground = new PlaygroundSection({
@@ -508,5 +510,17 @@ export default class World
             physics: this.physics
         })
         this.container.add(this.easterEggs.container)
+    }
+
+    setPhotoPlane()
+    {
+        this.photoPlane = new PhotoPlane(
+            './googlelogo_color_272x92dp.png',
+            10,
+            10,
+            new THREE.Vector3(10, 10, 0)
+        )
+        this.container.add(this.photoPlane.container)
+
     }
 }

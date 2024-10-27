@@ -757,10 +757,6 @@ export default class Physics
                 modelMesh.quaternion.copy(mesh.quaternion)
 
                 collision.model.meshes.push(modelMesh)
-                if(shape === 'box')
-                {
-                    console.log('mesh', mesh);
-                }
                 
             }
         }
