@@ -9,7 +9,6 @@ import Car from './Car.js'
 import Areas from './Areas.js'
 import Tiles from './Tiles.js'
 import Walls from './Walls.js'
-import PhotoPlane from './PhotoPlane.js'
 import IntroSection from './Sections/IntroSection.js'
 import ProjectsSection from './Sections/ProjectsSection.js'
 import CrossroadsSection from './Sections/CrossroadsSection.js'
@@ -77,7 +76,6 @@ export default class World
         this.setWalls()
         this.setSections()
         this.setEasterEggs()
-        this.setPhotoPlane()
     }
 
     setReveal()
@@ -510,17 +508,5 @@ export default class World
             physics: this.physics
         })
         this.container.add(this.easterEggs.container)
-    }
-
-    setPhotoPlane()
-    {
-        this.photoPlane = new PhotoPlane(
-            './googlelogo_color_272x92dp.png',
-            10,
-            10,
-            new THREE.Vector3(10, 10, 0)
-        )
-        this.container.add(this.photoPlane.container)
-
     }
 }

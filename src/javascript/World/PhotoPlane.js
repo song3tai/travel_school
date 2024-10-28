@@ -20,14 +20,23 @@ export default class PhotoPlane {
         const textureLoader = new THREE.TextureLoader()
 
         // 加载图片纹理
-        textureLoader.load('./googlelogo_color_272x92dp.png', (texture) => {
+        textureLoader.load(this.imageUrl, (texture) => {
+             // 设置纹理参数
+             texture.minFilter = THREE.LinearFilter
+             texture.magFilter = THREE.LinearFilter
+             texture.wrapS = THREE.ClampToEdgeWrapping
+             texture.wrapT = THREE.ClampToEdgeWrapping
+ 
             // 创建平面几何体
             const geometry = new THREE.PlaneGeometry(this.width, this.height)
 
             // 创建材质
             const material = new THREE.MeshBasicMaterial({
                 map: texture,
-                side: THREE.DoubleSide // 使平面的两面都可见
+                side: THREE.DoubleSide, // 使平面的两面都可见
+                transparent: true,     // 启用透明
+                alphaTest: 0.5,       // 设置透明度测试阈值
+                depthWrite: true     // 防止透明物体的深度写入问题
             })
 
             // 创建网格
@@ -38,7 +47,6 @@ export default class PhotoPlane {
 
             // 将网格添加到场景
             this.container.add(this.mesh)
-            console.log('this.mesh', this.mesh);
         },
         () => {
             console.log('加载进度');

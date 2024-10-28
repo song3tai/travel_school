@@ -1,4 +1,6 @@
 import * as THREE from 'three'
+import PhotoPlane from '../PhotoPlane.js'
+
 
 export default class IntroSection
 {
@@ -27,6 +29,7 @@ export default class IntroSection
         this.setTitles()
         this.setTiles()
         this.setDikes()
+        this.setPhotoPlane()
     }
 
     setStatic()
@@ -337,6 +340,18 @@ export default class IntroSection
             start: new THREE.Vector2(0, - 4.5),
             delta: new THREE.Vector2(0, - 4.5)
         })
+    }
+
+    setPhotoPlane()
+    {
+        this.photoPlane = new PhotoPlane(
+            './models/intro/playground.png',
+            50,
+            50,
+            new THREE.Vector3(50, 50, 0.01)
+        )
+        this.container.add(this.photoPlane.container)
+
     }
 
     setDikes()
