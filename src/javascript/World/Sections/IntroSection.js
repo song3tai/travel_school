@@ -346,8 +346,8 @@ export default class IntroSection
     {
         this.photoPlane = new PhotoPlane(
             './models/intro/playground.png',
-            50,
-            50,
+            70,
+            35,
             new THREE.Vector3(50, 50, 0.01)
         )
         this.container.add(this.photoPlane.container)
