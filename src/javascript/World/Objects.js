@@ -31,6 +31,50 @@ export default class Objects
         this.parsers = {}
 
         this.parsers.items = [
+            // football
+            {
+                regex: /^football([a-z]+)_?[0-9]{0,3}?/i,
+                apply: (_mesh, _options) =>
+                {
+                    // 使用原始网格的几何体而不是创建新的
+                    const geometry = _mesh.geometry
+                    
+                    // 确保几何体有 UV 坐标
+                    if (!geometry.attributes.uv) {
+                        console.warn('Football geometry missing UV coordinates',geometry)
+                    }
+                    // 创建材质
+                    const material = new THREE.MeshBasicMaterial({ 
+                        map: this.resources.items.football,
+                        side: THREE.DoubleSide, // 使平面的两面都可见
+                        transparent: true,     // 启用透明
+                        alphaTest: 0.5,       // 设置透明度测试阈值
+                        depthWrite: true     // 防止透明物体的深度写入问题
+                    })
+
+                    // 创建网格
+                    const mesh = _options.duplicated ? _mesh.clone() : _mesh
+                    mesh.material = material
+
+                    // 应用到子网格
+                    if(mesh.children.length)
+                    {
+                        for(const _child of mesh.children)
+                        {
+                            if(_child instanceof THREE.Mesh)
+                            {
+                                _child.material = material
+                            }
+                        }
+                    }
+
+                    // 强制更新材质和几何体
+                    mesh.geometry.computeVertexNormals()
+                    material.needsUpdate = true
+
+                    return mesh
+                }
+            },
             // Shade
             {
                 regex: /^shade([a-z]+)_?[0-9]{0,3}?/i,

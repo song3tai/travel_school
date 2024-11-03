@@ -205,6 +205,10 @@ export default class Resources extends EventEmitter
             { name: 'bowlingPinBase', source: './models/bowlingPin/base.glb' },
             { name: 'bowlingPinCollision', source: './models/bowlingPin/collision.glb' },
 
+            // football
+            { name: 'footballBase', source: './models/football/base.glb' },
+            { name: 'footballCollision', source: './models/football/collision.glb' },
+
             // Areas
             { name: 'areaKeyEnter', source: './models/area/keyEnter.png', type: 'texture' },
             { name: 'areaEnter', source: './models/area/enter.png', type: 'texture' },
@@ -262,8 +266,20 @@ export default class Resources extends EventEmitter
 
         this.loader.on('end', () =>
         {
-            // Trigger ready
-            this.trigger('ready')
+            // 单独处理足球
+            const textureLoader = new THREE.TextureLoader()
+            textureLoader.load('/models/football/football_diffuse.jpg',
+                (texture)=>{
+                    console.log('load texture', texture)
+                    // 设置纹理属性
+                    texture.encoding = THREE.sRGBEncoding
+                    texture.flipY = false
+                    this.items.football = texture
+                    // Trigger ready
+                    this.trigger('ready')
+                }
+            )
+
         })
     }
 }

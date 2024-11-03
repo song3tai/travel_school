@@ -455,6 +455,8 @@ export default class World
             y: 0
         })
         this.container.add(this.sections.intro.container)
+        const ambientLight = new THREE.AmbientLight(0xffffff, 200)
+        this.container.add(ambientLight)
 
         // Crossroads
         this.sections.crossroads = new CrossroadsSection({

@@ -30,6 +30,7 @@ export default class IntroSection
         this.setTiles()
         this.setDikes()
         this.setPhotoPlane()
+        this.setFootball()
     }
 
     setStatic()
@@ -351,7 +352,56 @@ export default class IntroSection
             new THREE.Vector3(50, 50, 0.01)
         )
         this.container.add(this.photoPlane.container)
+    }
 
+    setFootball()
+    {
+        this.football = {}
+        this.football.x = this.x + 55
+        this.football.y = this.y + 52
+
+        this.football.ball = this.objects.add({
+            base: this.resources.items.footballBase.scene,
+            collision: this.resources.items.footballCollision.scene,
+            offset: new THREE.Vector3(this.football.x - 5, this.football.y, 0),
+            rotation: new THREE.Euler(Math.PI * 0.5, 0, 0),
+            duplicated: true,
+            shadow: { sizeX: 2.5, sizeY: 2.5, offsetZ: - 0.3, alpha: 0.35 },
+            mass: 5,
+            soundName: 'bowlingBall'
+            // sleep: false
+        })
+
+        // Reset
+        this.football.reset = () =>
+        {
+            // Reset ball
+            this.football.ball.collision.reset()
+        }
+
+        // Reset area
+        this.football.resetArea = this.areas.add({
+            position: new THREE.Vector2(this.football.x + 40, this.football.y + 35),
+            halfExtents: new THREE.Vector2(2, 2)
+        })
+        this.football.resetArea.on('interact', () =>
+        {
+            this.football.reset()
+        })
+
+        // Reset label
+        this.football.areaLabelMesh = new THREE.Mesh(new THREE.PlaneGeometry(2, 0.5), new THREE.MeshBasicMaterial({ transparent: true, depthWrite: false, color: 0xffffff, alphaMap: this.resources.items.areaResetTexture }))
+        this.football.areaLabelMesh.position.x = this.football.x + 40
+        this.football.areaLabelMesh.position.y = this.football.y + 35
+        this.football.areaLabelMesh.matrixAutoUpdate = false
+        this.football.areaLabelMesh.updateMatrix()
+        this.container.add(this.football.areaLabelMesh)
+
+        // Debug
+        if(this.debugFolder)
+        {
+            this.debugFolder.add(this.football, 'reset').name('football reset')
+        }
     }
 
     setDikes()
