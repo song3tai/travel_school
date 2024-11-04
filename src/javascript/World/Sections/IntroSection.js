@@ -381,7 +381,7 @@ export default class IntroSection
 
         // Reset area
         this.football.resetArea = this.areas.add({
-            position: new THREE.Vector2(this.football.x + 40, this.football.y + 35),
+            position: new THREE.Vector2(this.football.x-5, this.football.y - 17),
             halfExtents: new THREE.Vector2(2, 2)
         })
         this.football.resetArea.on('interact', () =>
@@ -391,8 +391,8 @@ export default class IntroSection
 
         // Reset label
         this.football.areaLabelMesh = new THREE.Mesh(new THREE.PlaneGeometry(2, 0.5), new THREE.MeshBasicMaterial({ transparent: true, depthWrite: false, color: 0xffffff, alphaMap: this.resources.items.areaResetTexture }))
-        this.football.areaLabelMesh.position.x = this.football.x + 40
-        this.football.areaLabelMesh.position.y = this.football.y + 35
+        this.football.areaLabelMesh.position.x = this.football.x - 5
+        this.football.areaLabelMesh.position.y = this.football.y - 17
         this.football.areaLabelMesh.matrixAutoUpdate = false
         this.football.areaLabelMesh.updateMatrix()
         this.container.add(this.football.areaLabelMesh)

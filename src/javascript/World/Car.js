@@ -31,6 +31,22 @@ export default class Car
             // this.debugFolder.open()
         }
 
+        // Add jump tracking
+        this.jumpTracking = {
+            isInAir: true,      // 一开始车在天上落下来
+            jumpStartPosition: null,
+            lastJumpDistance: 0,
+            initialized: false  // 记录小车初始化，避免小车初始化时显示跳跃0米
+        }
+
+        // Add floating text container
+        this.floatingText = {
+            object: null,
+            visible: false,
+            fadeStart: 0,
+            duration: 2000 // Duration in milliseconds
+        }
+
         this.setModels()
         this.setMovement()
         this.setChassis()
@@ -99,6 +115,55 @@ export default class Car
             {
                 this.movement.lastScreech = this.time.elapsed
                 this.sounds.play('screech')
+            }
+
+            // Track jump distance
+            const isGrounded = this.physics.car.model.chassis.position.z < 2 ? true : false
+            if(!this.jumpTracking.initialized && isGrounded) {
+                this.jumpTracking.initialized = true
+            }
+
+            if(!this.jumpTracking.isInAir && !isGrounded) {
+                // Just left the ground
+                this.jumpTracking.isInAir = true
+                this.jumpTracking.jumpStartPosition = this.chassis.object.position.clone()
+            }
+            else if(this.jumpTracking.isInAir && isGrounded) {
+                // Just landed
+                this.jumpTracking.isInAir = false
+                if(this.jumpTracking.jumpStartPosition && this.jumpTracking.initialized) {
+                    const dx = this.chassis.object.position.x - this.jumpTracking.jumpStartPosition.x
+                    const dy = this.chassis.object.position.y - this.jumpTracking.jumpStartPosition.y
+                    this.jumpTracking.lastJumpDistance = Math.sqrt(dx * dx + dy * dy)
+                    
+                    // Display floating text
+                    this.showFloatingText(`${this.jumpTracking.lastJumpDistance.toFixed(1)}m`)
+                }
+            }
+
+            // Update floating text if visible
+            if(this.floatingText.visible) {
+                const progress = (this.time.elapsed - this.floatingText.fadeStart) / this.floatingText.duration
+                if(progress >= 1) {
+                    this.hideFloatingText()
+                } else {
+                    // Update position to follow car
+                    this.floatingText.object.position.copy(this.chassis.object.position)
+                    this.floatingText.object.position.z += 2 // Offset above car
+                    
+                    // Fade out
+                    this.floatingText.object.material.opacity = 1 - progress
+                }
+            }
+
+            // Debug output
+            if(this.debug && this.debugFolder) {
+                if(!this.debugJumpFolder) {
+                    this.debugJumpFolder = this.debugFolder.addFolder('Jump Tracking')
+                    this.debugJumpFolder.add(this.jumpTracking, 'minVerticalVelocity', 0.1, 2.0)
+                    this.debugJumpFolder.add(this.jumpTracking, 'isInAir').listen()
+                    this.debugJumpFolder.add(this.jumpTracking, 'lastJumpDistance').listen()
+                }
             }
         })
     }
@@ -385,5 +450,48 @@ export default class Car
                 })
             }
         })
+    }
+
+    showFloatingText(text)
+    {
+        // Remove existing text if any
+        this.hideFloatingText()
+
+        // Create text sprite
+        const canvas = document.createElement('canvas')
+        const context = canvas.getContext('2d')
+        canvas.width = 256
+        canvas.height = 128
+
+        context.font = 'bold 60px Arial'
+        context.fillStyle = '#ffffff'
+        context.textAlign = 'center'
+        context.textBaseline = 'middle'
+        context.fillText(text, canvas.width/2, canvas.height/2)
+
+        const texture = new THREE.CanvasTexture(canvas)
+        const material = new THREE.SpriteMaterial({ 
+            map: texture,
+            transparent: true
+        })
+        
+        this.floatingText.object = new THREE.Sprite(material)
+        this.floatingText.object.scale.set(2, 1, 1)
+        this.floatingText.object.position.copy(this.chassis.object.position)
+        this.floatingText.object.position.z += 2 // Position above car
+        
+        this.container.add(this.floatingText.object)
+        this.floatingText.visible = true
+        this.floatingText.fadeStart = this.time.elapsed
+    }
+
+    hideFloatingText()
+    {
+        if(this.floatingText.object) {
+            this.container.remove(this.floatingText.object)
+            this.floatingText.object.material.dispose()
+            this.floatingText.object = null
+        }
+        this.floatingText.visible = false
     }
 }
