@@ -22,12 +22,13 @@ export default class ThreejsJourney
         this.traveledDistance = 0
         this.minTraveledDistance = (this.config.debug ? 5 : 75) * (this.seenCount + 1)
         this.prevent = !!window.localStorage.getItem('threejsJourneyPrevent')
-
-        if(this.config.debug)
-            this.start()
+       
+        // if(this.config.debug)
+        // 暂时每次都显示
+        this.start()
         
-        if(this.prevent)
-            return
+        // if(this.prevent)
+        //     return
 
         this.setYesNo()
         this.setLog()
@@ -127,10 +128,10 @@ export default class ThreejsJourney
 //             `,
 //             'color: #705df2;'
 //         )
-        console.log('%cWhat are you doing here?! you sneaky developer...', 'color: #32ffce');
-        console.log('%cDo you want to learn how this portfolio has been made?', 'color: #32ffce');
-        console.log('%cCheckout Three.js Journey 👉 https://threejs-journey.com?c=p2', 'color: #32ffce');
-        console.log('%c— Bruno', 'color: #777777');
+        // console.log('%cWhat are you doing here?! you sneaky developer...', 'color: #32ffce');
+        // console.log('%cDo you want to learn how this portfolio has been made?', 'color: #32ffce');
+        // console.log('%cCheckout Three.js Journey 👉 https://threejs-journey.com?c=p2', 'color: #32ffce');
+        // console.log('%c— Bruno', 'color: #777777');
     }
 
     hide()

@@ -270,7 +270,6 @@ export default class Resources extends EventEmitter
             const textureLoader = new THREE.TextureLoader()
             textureLoader.load('/models/football/football_diffuse.jpg',
                 (texture)=>{
-                    console.log('load texture', texture)
                     // 设置纹理属性
                     texture.encoding = THREE.sRGBEncoding
                     texture.flipY = false

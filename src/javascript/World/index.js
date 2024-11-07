@@ -104,7 +104,7 @@ export default class World
 
             // Car
             this.physics.car.chassis.body.sleep()
-            this.physics.car.chassis.body.position.set(0, 0, 12)
+            this.physics.car.chassis.body.position.set(0, -20, 1)
 
             window.setTimeout(() =>
             {
@@ -455,16 +455,14 @@ export default class World
             y: 0
         })
         this.container.add(this.sections.intro.container)
-        const ambientLight = new THREE.AmbientLight(0xffffff, 200)
-        this.container.add(ambientLight)
 
-        // Crossroads
-        this.sections.crossroads = new CrossroadsSection({
-            ...options,
-            x: 0,
-            y: - 30
-        })
-        this.container.add(this.sections.crossroads.container)
+        // // Crossroads
+        // this.sections.crossroads = new CrossroadsSection({
+        //     ...options,
+        //     x: 0,
+        //     y: - 30
+        // })
+        // this.container.add(this.sections.crossroads.container)
 
         // Projects
         this.sections.projects = new ProjectsSection({
@@ -476,15 +474,15 @@ export default class World
         })
         this.container.add(this.sections.projects.container)
 
-        // Information
-        this.sections.information = new InformationSection({
-            ...options,
-            x: 1.2,
-            y: - 55
-            // x: 0,
-            // y: - 10
-        })
-        this.container.add(this.sections.information.container)
+        // // Information
+        // this.sections.information = new InformationSection({
+        //     ...options,
+        //     x: 1.2,
+        //     y: - 55
+        //     // x: 0,
+        //     // y: - 10
+        // })
+        // this.container.add(this.sections.information.container)
 
         // Playground
         this.sections.playground = new PlaygroundSection({
