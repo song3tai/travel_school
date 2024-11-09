@@ -334,6 +334,15 @@ export default class IntroSection
             mass: 1.5,
             soundName: 'brick'
         })
+        this.objects.add({
+            base: this.resources.items.intro60Base.scene,
+            collision: this.resources.items.intro60Collision.scene,
+            offset: new THREE.Vector3(0, 0, 0),
+            rotation: new THREE.Euler(0, 0, 0),
+            shadow: { sizeX: 2.5, sizeY: 1.5, offsetZ: - 0.6, alpha: 0.3 },
+            mass: 3,
+            soundName: 'brick'
+        })
     }
 
     setTiles()

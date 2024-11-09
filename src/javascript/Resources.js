@@ -90,6 +90,8 @@ export default class Resources extends EventEmitter
             { name: 'introXueYuanBase', source: './models/intro/xueyuan/base.glb' },
             { name: 'introXueYuanCollision', source: './models/intro/xueyuan/collision.glb' },
 
+            { name: 'intro60Base', source: './models/intro/60/base.glb' },
+            { name: 'intro60Collision', source: './models/intro/60/collision.glb' },
 
             // Intro
             { name: 'crossroadsStaticBase', source: './models/crossroads/static/base.glb' },
