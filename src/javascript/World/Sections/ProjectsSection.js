@@ -82,6 +82,7 @@ export default class ProjectsSection
                 floorTexture: this.resources.items.projectsThreejsJourneyFloorTexture,
                 link:
                 {
+                    videoUrl: './models/jay_music.mp4',
                     href: 'https://threejs-journey.com?c=p3',
                     x: - 4.8,
                     y: - 3,

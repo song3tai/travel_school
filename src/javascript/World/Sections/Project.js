@@ -194,7 +194,7 @@ export default class Project
         })
         this.floor.area.on('interact', () =>
         {
-            window.open(this.link.href, '_blank')
+            this.playVideo(this.link.videoUrl)
         })
 
         // Area label
@@ -205,5 +205,66 @@ export default class Project
         this.floor.areaLabel.matrixAutoUpdate = false
         this.floor.areaLabel.updateMatrix()
         this.floor.container.add(this.floor.areaLabel)
+    }
+
+    playVideo(videoUrl)
+    {
+        // 创建视频容器
+        const videoContainer = document.createElement('div')
+        videoContainer.style.cssText = `
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 400px;
+            background: rgba(0, 0, 0, 0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        `
+
+        // 创建视频元素
+        const video = document.createElement('video')
+        video.style.cssText = `
+            max-width: 100%;
+            max-height: 90%;
+        `
+        video.controls = true
+        video.src = videoUrl
+
+        // 创建关闭按钮
+        const closeButton = document.createElement('button')
+        closeButton.innerHTML = '关闭'
+        closeButton.style.cssText = `
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        `
+
+        // 添加关闭功能
+        const closeVideo = () => {
+            video.pause()
+            document.body.removeChild(videoContainer)
+        }
+
+        closeButton.onclick = closeVideo
+        videoContainer.onclick = (e) => {
+            if (e.target === videoContainer) closeVideo()
+        }
+
+        // 组装并添加到页面
+        videoContainer.appendChild(video)
+        videoContainer.appendChild(closeButton)
+        document.body.appendChild(videoContainer)
+
+        // 自动播放
+        video.play()
     }
 }
