@@ -139,6 +139,10 @@ export default class Resources extends EventEmitter
             { name: 'projectsOranoFloor', source: './models/projects/orano/floorTexture.png', type: 'texture' },
             // { name: 'projectsGleecChatFloor', source: './models/projects/gleecChat/floorTexture.png', type: 'texture' },
             // { name: 'projectsKepplerFloor', source: './models/projects/keppler/floorTexture.png', type: 'texture' },
+            { name: 'projectsSchoolIntro1Floor', source: './models/projects/school_intro_1/floorTexture.png', type: 'texture' },
+            { name: 'projectsSchoolIntro2Floor', source: './models/projects/school_intro_2/floorTexture.png', type: 'texture' },
+            { name: 'projectsSchoolIntro3Floor', source: './models/projects/school_intro_3/floorTexture.png', type: 'texture' },
+
 
             // Information
             { name: 'informationStaticBase', source: './models/information/static/base.glb' },

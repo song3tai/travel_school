@@ -265,11 +265,11 @@ export default class EasterEggs
         }
 
         // Area
-        this.wigs.area = this.areas.add({
-            position: new THREE.Vector2(0, 80),
-            halfExtents: new THREE.Vector2(2, 2)
-        })
-        this.wigs.area.on('interact', this.wigs.change)
+        // this.wigs.area = this.areas.add({
+        //     position: new THREE.Vector2(0, 80),
+        //     halfExtents: new THREE.Vector2(2, 2)
+        // })
+        // this.wigs.area.on('interact', this.wigs.change)
 
         // Label
         this.resources.items.areaQuestionMarkTexture.magFilter = THREE.NearestFilter
@@ -279,7 +279,7 @@ export default class EasterEggs
         this.wigs.areaLabel.position.y = 80
         this.wigs.areaLabel.matrixAutoUpdate = false
         this.wigs.areaLabel.updateMatrix()
-        this.container.add(this.wigs.areaLabel)
+        // this.container.add(this.wigs.areaLabel)
     }
 
     setEggs()

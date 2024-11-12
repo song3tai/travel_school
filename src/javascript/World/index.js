@@ -467,8 +467,8 @@ export default class World
         // Projects
         this.sections.projects = new ProjectsSection({
             ...options,
-            x: 30,
-            y: - 30
+            x: -20,
+            y: -40
             // x: 0,
             // y: 0
         })
@@ -485,14 +485,14 @@ export default class World
         // this.container.add(this.sections.information.container)
 
         // Playground
-        this.sections.playground = new PlaygroundSection({
-            ...options,
-            x: - 38,
-            y: - 34
-            // x: - 15,
-            // y: - 4
-        })
-        this.container.add(this.sections.playground.container)
+        // this.sections.playground = new PlaygroundSection({
+        //     ...options,
+        //     x: - 38,
+        //     y: - 34
+        //     // x: - 15,
+        //     // y: - 4
+        // })
+        // this.container.add(this.sections.playground.container)
     }
 
     setEasterEggs()
