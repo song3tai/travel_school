@@ -274,7 +274,7 @@ export default class Resources extends EventEmitter
         {
             // 单独处理足球
             const textureLoader = new THREE.TextureLoader()
-            textureLoader.load('/models/football/football_diffuse.jpg',
+            textureLoader.load('./models/football/football_diffuse.jpg',
                 (texture)=>{
                     // 设置纹理属性
                     texture.encoding = THREE.sRGBEncoding
